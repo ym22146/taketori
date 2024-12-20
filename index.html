@@ -186,19 +186,19 @@
             let resultMessage = "";
             let resultImage = "";
 
-            // 竹が割れる演出を表示
-            document.getElementById('bamboo-container').style.display = "block"; // 竹を表示
-            playBambooSound(); // 竹が割れる音を再生
+            // 竹割れアニメーションを表示
+            document.getElementById('bamboo-container').style.display = "block";
+            playBambooSound(); // 音を再生
 
             // 条件1: 情熱/コミットメントと誠実さが4点以上
             if ((scores.q1 >= 4 && scores.q2 >= 4) || (scores.q3 >= 4 && scores.q4 >= 4)) {
-                resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。帝はかぐや姫と3年間の間手紙をやり取りし、心を通わせました。その根気強さと情熱が光るあなたは竹取物語の中でも圧倒的な存在感を放ちます。";
-                resultImage = "<img src='https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/yuna_/OneDrive/%E7%94%BB%E5%83%8F/Saved%20Pictures/images/pictures/mikado.jpg?version%3D1734646418084' alt='帝の画像'>";
+                resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。";
+                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
             }
             // 条件2: 全部5点
             else if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
-                resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。モテモテのかぐや姫は、五人の貴公子と帝からの求婚を拒みましたが、帝とだけは三年間手紙のやり取りが続き、心を通わせました。様々な面において魅力があるあなたはまさに帝です。";
-                resultImage = "<img src='https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/yuna_/OneDrive/%E7%94%BB%E5%83%8F/Saved%20Pictures/images/pictures/mikado.jpg?version%3D1734646418084' alt='帝の画像'>";
+                resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。";
+                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
             }
             // 条件3: 全部2, 3, 4点
             else if (
@@ -213,7 +213,7 @@
             }
             // 条件4: q1が最大点
             else if (scores.q1 === maxScore) {
-                resultMessage = "あなたはかぐや姫です！\n他人の感情に敏感で、周囲の心情に寄り添う姿勢は、竹取物語でかぐや姫が人々に深い影響を与える姿と重なります。かぐや姫は月に帰らなければいけないことを思い出し、月を見て静かに泣く繊細な人物です。";
+                resultMessage = "あなたはかぐや姫です！\n他人の感情に敏感で、周囲の心情に寄り添う姿勢は、竹取物語でかぐや姫が人々に深い影響を与える姿と重なります。";
                 resultImage = "<img src='images/pictures/kaguyahime.jpg' alt='かぐや姫の画像'>";
             }
             // 条件5: その他の各選択肢
@@ -235,7 +235,7 @@
             }
             // 条件6: その他の場合
             else {
-                resultMessage = "あなたは竹取物語の作者です。\nあなたは型に当てはまらない独自の視点を持つ謎めいた人物のようです。ロングヒット作品を生み出す独創性を感じるうえに、情報がほとんどないミステリアスな作者と似ています。";
+                resultMessage = "あなたは竹取物語の作者です。\nあなたは型に当てはまらない独自の視点を持つ謎めいた人物のようです。";
                 resultImage = "<img src='images/pictures/sakusya.jpg' alt='作者の画像'>";
             }
 
