@@ -157,12 +157,6 @@
     <div id="message" class="result"></div>
 
     <script>
-        // 竹の割れる音を再生
-        function playBambooSound() {
-            var audio = new Audio('bamboo-crack.mp3');  // 竹が割れる音のファイル
-            audio.play();
-        }
-
         function getSelectedValue(name) {
             const radios = document.getElementsByName(name);
             for (let radio of radios) {
@@ -188,7 +182,6 @@
 
             // 竹割れアニメーションを表示
             document.getElementById('bamboo-container').style.display = "block";
-            playBambooSound(); // 音を再生
 
             // 条件1: 情熱/コミットメントと誠実さが4点以上
             if ((scores.q1 >= 4 && scores.q2 >= 4) || (scores.q3 >= 4 && scores.q4 >= 4)) {
@@ -240,8 +233,9 @@
             }
 
             // 結果の表示
-            document.getElementById("message").innerHTML = resultMessage + resultImage;
-            document.getElementById("message").style.display = "block"; // メッセージ表示
+            const messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = resultMessage + resultImage;
+            messageDiv.style.display = "block"; // メッセージ表示
         }
     </script>
 </body>
