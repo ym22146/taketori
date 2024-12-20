@@ -41,6 +41,7 @@
             height: 100%;
             background-color: #4d6e56;
             position: absolute;
+            transition: transform 2s ease-in-out;
         }
 
         .crack-left,
@@ -51,8 +52,6 @@
             background-color: #4d6e56;
             opacity: 1;
             transform: scaleX(1);
-            top: 0;
-            left: 0;
         }
 
         .crack-left {
@@ -87,7 +86,6 @@
         @keyframes crackLeft {
             0% {
                 transform: scaleX(1);
-                opacity: 1;
             }
             100% {
                 transform: scaleX(0);
@@ -98,7 +96,6 @@
         @keyframes crackRight {
             0% {
                 transform: scaleX(1);
-                opacity: 1;
             }
             100% {
                 transform: scaleX(0);
@@ -112,4 +109,139 @@
     <p>「竹取物語」の登場人物に似ているのはあなた？診断を始めましょう！</p>
     <form id="quizForm">
         <div class="question">
-            <label>1. 他人の感情に敏感で、その心情に寄り添う
+            <label>1. 他人の感情に敏感で、その心情に寄り添うことが得意だ</label><br>
+            <input type="radio" name="q1" value="5"> とてもそう思う<br>
+            <input type="radio" name="q1" value="4"> かなりそう思う<br>
+            <input type="radio" name="q1" value="3"> どちらともいえない<br>
+            <input type="radio" name="q1" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q1" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>2. 自分が決めたことは最後までやりとげる</label><br>
+            <input type="radio" name="q2" value="5"> とてもそう思う<br>
+            <input type="radio" name="q2" value="4"> かなりそう思う<br>
+            <input type="radio" name="q2" value="3"> どちらともいえない<br>
+            <input type="radio" name="q2" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q2" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>3. 罪悪感を感じて悩むことが多い</label><br>
+            <input type="radio" name="q3" value="5"> とてもそう思う<br>
+            <input type="radio" name="q3" value="4"> かなりそう思う<br>
+            <input type="radio" name="q3" value="3"> どちらともいえない<br>
+            <input type="radio" name="q3" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q3" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>4. 無駄だと思うものをすぐに捨てられるタイプだ</label><br>
+            <input type="radio" name="q4" value="5"> とてもそう思う<br>
+            <input type="radio" name="q4" value="4"> かなりそう思う<br>
+            <input type="radio" name="q4" value="3"> どちらともいえない<br>
+            <input type="radio" name="q4" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q4" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>5. 目標達成のためにリスクを取ることを恐れない</label><br>
+            <input type="radio" name="q5" value="5"> とてもそう思う<br>
+            <input type="radio" name="q5" value="4"> かなりそう思う<br>
+            <input type="radio" name="q5" value="3"> どちらともいえない<br>
+            <input type="radio" name="q5" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q5" value="1"> 全くそう思わない
+        </div>
+        <button type="button" onclick="submitForm()">結果を表示</button>
+    </form>
+
+    <!-- 竹割れアニメーション -->
+    <div id="bamboo-container" class="bamboo-container">
+        <div id="bamboo" class="bamboo"></div>
+        <div id="crack-left" class="crack-left"></div>
+        <div id="crack-right" class="crack-right"></div>
+    </div>
+
+    <div id="message" class="result"></div>
+
+    <script>
+        function getSelectedValue(name) {
+            const radios = document.getElementsByName(name);
+            for (let radio of radios) {
+                if (radio.checked) {
+                    return parseInt(radio.value);
+                }
+            }
+            return 0;  // 選択肢が選ばれていない場合
+        }
+
+        function submitForm() {
+            const scores = {
+                q1: getSelectedValue('q1'),
+                q2: getSelectedValue('q2'),
+                q3: getSelectedValue('q3'),
+                q4: getSelectedValue('q4'),
+                q5: getSelectedValue('q5')
+            };
+
+            const maxScore = Math.max(scores.q1, scores.q2, scores.q3, scores.q4, scores.q5);
+            let resultMessage = "";
+            let resultImage = "";
+
+            // 竹割れアニメーションを表示
+            document.getElementById('bamboo-container').style.display = "block";
+            // アニメーションを発動
+            document.getElementById('crack-left').style.animation = 'crackLeft 2s forwards';
+            document.getElementById('crack-right').style.animation = 'crackRight 2s forwards';
+
+            // 結果メッセージの表示
+            const messageDiv = document.getElementById("message");
+
+            // 結果を判定
+            if ((scores.q1 >= 4 && scores.q2 >= 4) || (scores.q3 >= 4 && scores.q4 >= 4)) {
+                resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。";
+                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
+            }
+            else if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
+                resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。";
+                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
+            }
+            else if (
+                (scores.q1 >= 2 && scores.q1 <= 4) &&
+                (scores.q2 >= 2 && scores.q2 <= 4) &&
+                (scores.q3 >= 2 && scores.q3 <= 4) &&
+                (scores.q4 >= 2 && scores.q4 <= 4) &&
+                (scores.q5 >= 2 && scores.q5 <= 4)
+            ) {
+                resultMessage = "あなたは竹取の夫婦です！\nどの質問もバランスが取れているあなたは、優しく、強くかぐや姫を支える竹取の夫婦のような存在です。";
+                resultImage = "<img src='images/pictures/taketorihuhu.jpg' alt='竹取の夫婦の画像'>";
+            }
+            else if (scores.q1 === maxScore) {
+                resultMessage = "あなたはかぐや姫です！\n他人の感情に敏感で、周囲の心情に寄り添う姿勢は、竹取物語でかぐや姫が人々に深い影響を与える姿と重なります。";
+                resultImage = "<img src='images/pictures/kaguyahime.jpg' alt='かぐや姫の画像'>";
+            }
+            else if (scores.q2 === maxScore) {
+                resultMessage = "あなたは竹取の夫婦です！\n自分が決めたことを最後までやりとげる責任感があるあなたは、竹取の翁と妻のように、強い意志を持って大事な人を支えられる人です。";
+                resultImage = "<img src='images/pictures/taketorihuhu.jpg' alt='竹取の夫婦の画像'>";
+            }
+            else if (scores.q3 === maxScore) {
+                resultMessage = "あなたは大伴のみゆきです！\n自分の過ちを反省できる誠実なあなたは、他の位の高い貴公子たちとは違い、誠実な対応をした大伴のみゆきに似ています。";
+                resultImage = "<img src='images/pictures/ootomonomiyuki.jpg' alt='大伴のみゆきの画像'>";
+            }
+            else if (scores.q4 === maxScore) {
+                resultMessage = "あなたは月の使者です！\n無駄なものをすぐに捨てられるあなたは、竹取物語で月の使者が竹取の夫婦が必死に止めるのは気にせず、月にかぐや姫を連れて帰るという目的のために動ける、冷静な月の使者の姿に似ています。";
+                resultImage = "<img src='images/pictures/tukinosisya.jpg' alt='月の使者の画像'>";
+            }
+            else if (scores.q5 === maxScore) {
+                resultMessage = "あなたは石作りの皇子です！\nリスクを恐れず、目標を達成するために突き進むあなたは、竹取物語でかぐや姫を手に入れるために何とかしようと知恵を絞って行動する石作りの皇子のように冒険的な性格の持ち主です。";
+                resultImage = "<img src='images/pictures/isitukurinomiko.jpg' alt='石作りの皇子の画像'>";
+            }
+            else {
+                resultMessage = "あなたは竹取物語の作者です。\nあなたは型に当てはまらない独自の視点を持つ謎めいた人物のようです。";
+                resultImage = "<img src='images/pictures/sakusya.jpg' alt='作者の画像'>";
+            }
+
+            // メッセージを表示
+            messageDiv.innerHTML = resultMessage + resultImage;
+            messageDiv.style.display = "block"; // 結果を表示
+        }
+    </script>
+</body>
+</html>
+
