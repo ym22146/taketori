@@ -110,11 +110,11 @@
                 resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。";
                 resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
             }
-            if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
+            else if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
                 resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。";
                 resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
             }
-            if (
+            else if (
                 (scores.q1 >= 2 && scores.q1 <= 4) &&
                 (scores.q2 >= 2 && scores.q2 <= 4) &&
                 (scores.q3 >= 2 && scores.q3 <= 4) &&
@@ -124,23 +124,23 @@
                 resultMessage = "あなたは竹取の夫婦です！\nどの質問もバランスが取れているあなたは、優しく、強くかぐや姫を支える竹取の夫婦のような存在です。";
                 resultImage = "<img src='images/pictures/taketorihuhu.jpg' alt='竹取の夫婦の画像'>";
             }
-            if (scores.q1 === maxScore) {
+            else if (scores.q1 === maxScore) {
                 resultMessage = "あなたはかぐや姫です！\n他人の感情に敏感で、周囲の心情に寄り添う姿勢は、竹取物語でかぐや姫が人々に深い影響を与える姿と重なります。";
                 resultImage = "<img src='images/pictures/kaguyahime.jpg' alt='かぐや姫の画像'>";
             }
-            if (scores.q2 === maxScore) {
+            else if (scores.q2 === maxScore) {
                 resultMessage = "あなたは竹取の夫婦です！\n自分が決めたことを最後までやりとげる責任感があるあなたは、竹取の翁と妻のように、強い意志を持って大事な人を支えられる人です。";
                 resultImage = "<img src='images/pictures/taketorihuhu.jpg' alt='竹取の夫婦の画像'>";
             }
-            if (scores.q3 === maxScore) {
+           else if (scores.q3 === maxScore) {
                 resultMessage = "あなたは大伴のみゆきです！\n自分の過ちを反省できる誠実なあなたは、他の位の高い貴公子たちとは違い、誠実な対応をした大伴のみゆきに似ています。";
                 resultImage = "<img src='images/pictures/ootomonomiyuki.jpg' alt='大伴のみゆきの画像'>";
             }
-            if (scores.q4 === maxScore) {
+            else if (scores.q4 === maxScore) {
                 resultMessage = "あなたは月の使者です！\n無駄なものをすぐに捨てられるあなたは、竹取物語で月の使者が竹取の夫婦が必死に止めるのは気にせず、月にかぐや姫を連れて帰るという目的のために動ける、冷静な月の使者の姿に似ています。";
                 resultImage = "<img src='images/pictures/tukinosisya.jpg' alt='月の使者の画像'>";
             }
-            if (scores.q5 === maxScore) {
+           else if (scores.q5 === maxScore) {
                 resultMessage = "あなたは石作りの皇子です！\nリスクを恐れず、目標を達成するために突き進むあなたは、竹取物語でかぐや姫を手に入れるために何とかしようと知恵を絞って行動する石作りの皇子のように冒険的な性格の持ち主です。";
                 resultImage = "<img src='images/pictures/isitukurinomiko.jpg' alt='石作りの皇子の画像'>";
             }
