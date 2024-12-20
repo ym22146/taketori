@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竹の中のあなた診断</title>
+    <style>
+        .question {
+            margin: 20px 0;
+        }
+        .question label {
+            font-weight: bold;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .result img {
+            display: block;
+            margin: 10px 0;
+            max-width: 200px; /* 画像サイズを小さく設定 */
+            height: auto; /* 高さを自動調整 */
+        }
+    </style>
+</head>
+<body>
+    <h1>竹の中のあなた診断</h1>
+    <p>次の質問に答え、運命の竹を割りましょう:</p>
+    <form id="quizForm">
+        <div class="question">
+            <label>1. 他人の感情に敏感で、その心情に寄り添うことが得意だ</label><br>
+            <input type="radio" name="q1" value="5"> とてもそう思う<br>
+            <input type="radio" name="q1" value="4"> かなりそう思う<br>
+            <input type="radio" name="q1" value="3"> どちらともいえない<br>
+            <input type="radio" name="q1" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q1" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>2. 自分が決めたことは最後までやりとげる</label><br>
+            <input type="radio" name="q2" value="5"> とてもそう思う<br>
+            <input type="radio" name="q2" value="4"> かなりそう思う<br>
+            <input type="radio" name="q2" value="3"> どちらともいえない<br>
+            <input type="radio" name="q2" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q2" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>3. 罪悪感を感じて悩むことが多い</label><br>
+            <input type="radio" name="q3" value="5"> とてもそう思う<br>
+            <input type="radio" name="q3" value="4"> かなりそう思う<br>
+            <input type="radio" name="q3" value="3"> どちらともいえない<br>
+            <input type="radio" name="q3" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q3" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>4. 無駄だと思うものをすぐに捨てられるタイプだ</label><br>
+            <input type="radio" name="q4" value="5"> とてもそう思う<br>
+            <input type="radio" name="q4" value="4"> かなりそう思う<br>
+            <input type="radio" name="q4" value="3"> どちらともいえない<br>
+            <input type="radio" name="q4" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q4" value="1"> 全くそう思わない
+        </div>
+        <div class="question">
+            <label>5. 目標達成のためにリスクを取ることを恐れない</label><br>
+            <input type="radio" name="q5" value="5"> とてもそう思う<br>
+            <input type="radio" name="q5" value="4"> かなりそう思う<br>
+            <input type="radio" name="q5" value="3"> どちらともいえない<br>
+            <input type="radio" name="q5" value="2"> あまりそう思わない<br>
+            <input type="radio" name="q5" value="1"> 全くそう思わない
+        </div>
+        <button type="button" onclick="submitForm()">結果を表示</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        function getSelectedValue(name) {
+            const radios = document.getElementsByName(name);
+            for (let radio of radios) {
+                if (radio.checked) {
+                    return parseInt(radio.value);
+                }
+            }
+            return 0;  // 選択肢が選ばれていない場合
+        }
+
+        function submitForm() {
+            const scores = {
+                q1: getSelectedValue('q1'),
+                q2: getSelectedValue('q2'),
+                q3: getSelectedValue('q3'),
+                q4: getSelectedValue('q4'),
+                q5: getSelectedValue('q5')
+            };
+
+            const maxScore = Math.max(scores.q1, scores.q2, scores.q3, scores.q4, scores.q5);
+            let resultMessage = "";
+            let resultImage = "";
+
+            // ルール追加: 全部1点だった場合
+            if (scores.q1 === 1 && scores.q2 === 1 && scores.q3 === 1 && scores.q4 === 1 && scores.q5 === 1) {
+                resultMessage = "あなたは竹取物語の作者です！\nあなたは型に当てはまらない独自の視点を持つ謎めいた人物のようです。ロングヒット作品を生み出す独創性を感じるうえに、情報がほとんどないミステリアスな作者と似ています。";
+                resultImage = "<img src='sakusya.jpg' alt='作者の画像'>";
+            }
+            // ルール追加: 情熱/コミットメントと誠実さのどちらも4点以上だった場合
+            else if ((scores.q1 >= 4 && scores.q2 >= 4) || (scores.q3 >= 4 && scores.q4 >= 4)) {
+                resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。帝はかぐや姫と3年間の間手紙をやり取りし、心を通わせました。その根気強さと情熱が光るあなたは竹取物語の中でも圧倒的な存在感を放ちます。";
+                resultImage = "<img src='mikado.jpg' alt='帝の画像'>";
+            }
+            // ルール追加: 全部5点だった場合
+            else if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
+                resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。モテモテのかぐや姫は、五人の貴公子と帝からの求婚を拒みましたが、帝とだけは三年間手紙のやり取りが続き、心を通わせました。様々な面において魅力があるあなたはまさに帝です。";
+                resultImage = "<img src='mikado.jpg' alt='帝の画像'>";
+            }
+            // ルール追加: 全部2, 3, 4点だった場合
+            else if (
+                (scores.q1 >= 2 && scores.q1 <= 4) &&
+                (scores.q2 >= 2 && scores.q2 <= 4) &&
+                (scores.q3 >= 2 && scores.q3 <= 4) &&
+                (scores.q4 >= 2 && scores.q4 <= 4) &&
+                (scores.q5 >= 2 && scores.q5 <= 4)
+            ) {
+                resultMessage = "あなたは竹取の夫婦です！\nどの質問もバランスが取れているあなたは、優しく、強くかぐや姫を支える竹取の夫婦のような存在です。";
+                resultImage = "<img src='taketorihuhu.jpg' alt='竹取の夫婦の画像'>";
+            }
+            // その他の場合（残りの選択肢）
+            else {
+                resultMessage = "あなたは竹取物語の登場人物に似ていない独自の存在です。";
+                resultImage = "<img src='default.jpg' alt='デフォルト画像'>";
+            }
+
+            // 結果の表示
+            document.getElementById("result").innerHTML = resultMessage + resultImage;
+        }
+    </script>
+</body>
+</html>
