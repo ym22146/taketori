@@ -108,11 +108,11 @@
             // 結果を判定
             if ((scores.q1 >= 4 && scores.q2 >= 4) || (scores.q3 >= 4 && scores.q4 >= 4)) {
                 resultMessage = "あなたは帝です！\n情熱と誠実さが光る人物です。";
-                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
+                resultImage = <img src="/taketori/images/pictures/mikado.jpg" alt="帝の画像">
             }
             else if (scores.q1 === 5 && scores.q2 === 5 && scores.q3 === 5 && scores.q4 === 5 && scores.q5 === 5) {
                 resultMessage = "あなたは帝です！\n思いやり、責任感、誠実さ、合理性、目標達成への高い意識の全てを備えるあなたは、竹取物語で一番の王者、帝のような存在です。";
-                resultImage = "<img src='images/pictures/mikado.jpg' alt='帝の画像'>";
+                resultImage =  <img src="/taketori/images/pictures/mikado.jpg" alt="帝の画像">
             }
             else if (
                 (scores.q1 >= 2 && scores.q1 <= 4) &&
